@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.rndio.gpstesx.data.local.dao.UserDao
-import com.rndio.gpstesx.data.local.entities.User
+import com.rndio.gpstesx.data.local.dao.LocationDao
+import com.rndio.gpstesx.data.local.entities.LocationEntity
 
-@Database(entities = [User::class], version = 1, exportSchema = false)
+@Database(entities = [LocationEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun userDao(): UserDao
+    abstract fun locationDao(): LocationDao
 
     companion object {
         @Volatile
@@ -20,7 +20,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "app_database"
+                    "tracking_db"
                 ).build()
                 INSTANCE = instance
                 instance
